@@ -1,0 +1,63 @@
+FORMAT: 1A
+HOST: http://localhost:8080/faturamento/rest/
+
+# Faturamento Service API
+
+API que permite consumir serviços do Faturamento.
+
+## Nota fiscal [/notafiscal]
+
+### Recuperar notafiscal [GET]
+
+Recupera uma notafiscal a partir de um identificador número
+
++ Request (application/json)
+            
+        { 
+            "numeroNotaFiscal": "1"
+        }
+    
+    + Attributes
+        + numeroNotaFiscal (string, required)
+
++ Response 200 (application/json)
+
+        {
+            "numeroNotaFiscal": "123456",
+            "produtos": [{
+                "nome": "Mochila",
+                "quantidade": 10
+            }, {
+                "nome": "Apontador",
+                "quantidade": 5
+            }]
+        }
+
+### Emitir notafiscal [POST]
+
+Emite uma notafiscal dado um produto passado como parâmetro com atributo nome preenchido.
+
++ Request (application/json)
+
+        { 
+            "numeroNotaFiscal": "1"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /notafiscal/1
+
+    + Body
+
+            {
+                "numeroNotaFiscal": "123456",
+                "produtos": [{
+                    "nome": "Mochila",
+                    "quantidade": 10
+                }, {
+                    "nome": "Apontador",
+                    "quantidade": 5
+                }]
+            }
